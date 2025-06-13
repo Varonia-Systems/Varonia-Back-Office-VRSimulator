@@ -5,7 +5,9 @@ using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+#endif
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using VaroniaBackOffice;
