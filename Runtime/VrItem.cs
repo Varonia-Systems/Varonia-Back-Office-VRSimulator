@@ -13,7 +13,7 @@ public class VrItem : MonoBehaviour
     protected VREmulator VREmulator;
     
     
-    protected Transform TrackedObj;
+
     
     protected bool IsInit;
     

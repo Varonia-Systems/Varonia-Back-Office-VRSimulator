@@ -77,6 +77,7 @@ public class VREmulator : MonoBehaviour
     
     private void Update()
     {
+        if(uI.activeSelf)
         DebugVaronia.Instance.AdvDebugMove = false;
         
         if ( KeyboardHook.GetKeyDown(KeyCode.Tab) && Application.isFocused)
@@ -196,7 +197,7 @@ if (KeyboardHook.GetKeyDown(KeyCode.Escape))
         }
 
 
-   if (Input.GetKey(KeyCode.RightAlt))
+   if (!Input.GetKey(KeyCode.RightAlt))
         {
 
         if (Input.GetKey(KeyCode.Keypad8))
