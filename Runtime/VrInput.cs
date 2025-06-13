@@ -19,9 +19,9 @@ public class VrInput : VrItem
     {
         yield return new WaitUntil(() => VREmulator.cameraPlayer != null);
         yield return new WaitUntil(() => VaroniaInput.Instance != null);
-        yield return new WaitUntil(() =>  VaroniaInput.Instance.trackedObj != null);
+        yield return new WaitUntil(() =>  VaroniaInput.Instance.Tracking != null);
 
-        TrackedObj = VaroniaInput.Instance.trackedObj;
+       
         
         IsInit = true;
     }
@@ -35,12 +35,12 @@ public class VrInput : VrItem
             return;
         
 // Calculate pivot offset in world space
-        Vector3 pivotWorldOffset = VaroniaInput.Instance.trackedObj.transform.TransformVector(VaroniaInput.Instance.Pivot.localPosition);
+        Vector3 pivotWorldOffset = VaroniaInput.Instance.Tracking.TransformVector(VaroniaInput.Instance.Pivot.localPosition);
 // Transform fake gun position to camera space
         Vector3 fakeGunPosInCameraSpace = VREmulator.cameraPlayer.transform.TransformVector(fakePos);
 
 // Set tracked object position relative to camera with offsets
-        VaroniaInput.Instance.trackedObj.transform.position = 
+        VaroniaInput.Instance.Tracking.position = 
             VREmulator.cameraPlayer.transform.position + 
             (VREmulator.cameraPlayer.transform.forward * 0.5f) + 
             fakeGunPosInCameraSpace - 
@@ -54,7 +54,7 @@ public class VrInput : VrItem
         Quaternion desiredRotation = Quaternion.Euler(fakeRot + new Vector3(0, 90, 0));
 
 // Set final rotation combining camera, desired rotation, and pivot compensation
-        VaroniaInput.Instance.trackedObj.transform.rotation = cameraRotation * desiredRotation * pivotCompensation;
+        VaroniaInput.Instance.Tracking.rotation = cameraRotation * desiredRotation * pivotCompensation;
 
 
 
