@@ -190,7 +190,7 @@ if (KeyboardHook.GetKeyDown(KeyCode.Escape))
 #else
         // Old input system
 
-  if (Input.GetKey(KeyCode.numpadEnterKey))
+  if (Input.GetKey(KeyCode.KeypadEnter))
         {
                 temp_ItemControl.ResetPos();
         }
