@@ -91,6 +91,9 @@ void Size()
     
     void HandleMovement()
     {
+        
+        if (!_vrEmulator || !_vrEmulator.cameraPlayer) return;
+        
         Vector2 inputVector = GetMovementInput();
     
         // Utiliser l'orientation de la CAMÉRA pour calculer la direction

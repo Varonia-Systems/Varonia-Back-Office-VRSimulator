@@ -84,7 +84,7 @@ public class VREmulator : MonoBehaviour
            SwitchUI();
         
        
-if (KeyboardHook.GetKeyDown(KeyCode.Escape))
+if (KeyboardHook.GetKeyDown(KeyCode.Escape) && uI.activeSelf && Application.isFocused)
     _mouseLook.enabled = !_mouseLook.enabled;
         
         heightValue.text = "Set Height ("+slider.value.ToString("F2")+")";
@@ -264,6 +264,8 @@ if (KeyboardHook.GetKeyDown(KeyCode.Escape))
             SetHeight(1.8f);
          
         }
+        
+        _mouseLook.enabled = uI.activeSelf;
     }
 
 

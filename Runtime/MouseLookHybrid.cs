@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -29,7 +30,7 @@ public class MouseLookHybrid : MonoBehaviour
             return;
         }
 
-        // Cursor.lockState = CursorLockMode.Locked;
+        
     }
 
     void Update()
@@ -59,5 +60,16 @@ public class MouseLookHybrid : MonoBehaviour
         // Application cohérente de la rotation
         _vrEmulator.cameraPlayer.transform.localRotation =
             Quaternion.Euler(_xRotation, _yRotation, 0f);
+    }
+
+
+    private void OnEnable()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    
+    private void OnDisable()
+    {
+        Cursor.lockState = CursorLockMode.None;
     }
 }
