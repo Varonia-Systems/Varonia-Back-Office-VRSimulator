@@ -262,10 +262,11 @@ if (KeyboardHook.GetKeyDown(KeyCode.Escape) && uI.activeSelf && Application.isFo
         if (uI.activeSelf)
         {
             SetHeight(1.8f);
-         
+          
         }
         
         _mouseLook.enabled = uI.activeSelf;
+        VaroniaGlobal.HideDebugCanvas = uI.activeSelf;
     }
 
 
