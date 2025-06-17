@@ -36,8 +36,51 @@ public class VrInput : VrItem
         
         IsInit = true;
     }
+
+
+
+    public override void Update()
+    {
+            base.Update();
+            
+            
+            
+
+            if (Application.isFocused)
+            {
+
+// Update mouse input system
+                    MouseHook.Update();
+
+// Handle left mouse button (primary action)
+                    if (MouseHook.GetMouseButtonDown(0))
+                            VaroniaInput.Instance.EventPrimaryDown.Invoke();
+
+                    if (MouseHook.GetMouseButtonUp(0))
+                            VaroniaInput.Instance.EventPrimaryUp.Invoke();
+
+// Handle right mouse button (secondary action)
+                    if (MouseHook.GetMouseButtonDown(1))
+                            VaroniaInput.Instance.EventSecondaryDown.Invoke();
+
+                    if (MouseHook.GetMouseButtonUp(1))
+                            VaroniaInput.Instance.EventSecondaryUp.Invoke();
+
+// Handle middle mouse button (reload action)
+                    if (MouseHook.GetMouseButtonDown(2))
+                            VaroniaInput.Instance.EventReloadDown.Invoke();
+
+                    if (MouseHook.GetMouseButtonUp(2))
+                            VaroniaInput.Instance.EventReloadUp.Invoke();
+
+// Finalize mouse input processing
+                    MouseHook.LateUpdate();
+
+            }
+            
+    }
     
- 
+    
    public void LateUpdate()
     {
         
@@ -75,38 +118,6 @@ public class VrInput : VrItem
 
 
 
-
-        if (Application.isFocused)
-        {
-
-// Update mouse input system
-            MouseHook.Update();
-
-// Handle left mouse button (primary action)
-            if (MouseHook.GetMouseButtonDown(0))
-                VaroniaInput.Instance.EventPrimaryDown.Invoke();
-
-            if (MouseHook.GetMouseButtonUp(0))
-                VaroniaInput.Instance.EventPrimaryUp.Invoke();
-
-// Handle right mouse button (secondary action)
-            if (MouseHook.GetMouseButtonDown(1))
-                VaroniaInput.Instance.EventSecondaryDown.Invoke();
-
-            if (MouseHook.GetMouseButtonUp(1))
-                VaroniaInput.Instance.EventSecondaryUp.Invoke();
-
-// Handle middle mouse button (reload action)
-            if (MouseHook.GetMouseButtonDown(2))
-                VaroniaInput.Instance.EventReloadDown.Invoke();
-
-            if (MouseHook.GetMouseButtonUp(2))
-                VaroniaInput.Instance.EventReloadUp.Invoke();
-
-// Finalize mouse input processing
-            MouseHook.LateUpdate();
-
-        }
     }
    
    #endif
