@@ -262,11 +262,20 @@ if (KeyboardHook.GetKeyDown(KeyCode.Escape) && uI.activeSelf && Application.isFo
         if (uI.activeSelf)
         {
             SetHeight(1.8f);
-          
+            Application.targetFrameRate = 90;
+
+        }
+        else
+        {
+            Application.targetFrameRate = -1;
+
         }
         
         _mouseLook.enabled = uI.activeSelf;
         VaroniaGlobal.HideDebugCanvas = uI.activeSelf;
+        
+        
+        
     }
 
 

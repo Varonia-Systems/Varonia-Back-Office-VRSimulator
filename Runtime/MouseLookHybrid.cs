@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 
+[DefaultExecutionOrder(0)]
 public class MouseLookHybrid : MonoBehaviour
 {
     private VREmulator _vrEmulator;

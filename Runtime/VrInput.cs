@@ -3,10 +3,21 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using VaroniaBackOffice;
 
+[DefaultExecutionOrder(-100)]
 public class VrInput : VrItem
 {
 
  #if VBO_Input
+    
+    [Header("Smoothing")]
+    public float rotationSmoothing = 0.05f; // Très rapide
+
+    
+    private Quaternion lastCameraRotation;
+    private Quaternion targetRotation;
+
+    
+    
    public override void Start()
     {
         base.Start();
@@ -27,24 +38,14 @@ public class VrInput : VrItem
     }
     
  
-   public override void Update()
+   public void LateUpdate()
     {
-        base.Update();
         
         if(!IsInit || VREmulator.cameraPlayer==null || !VREmulator.uI.activeSelf )
             return;
         
-// Calculate pivot offset in world space
-        Vector3 pivotWorldOffset = VaroniaInput.Instance.Tracking.TransformVector(VaroniaInput.Instance.Pivot.localPosition);
-// Transform fake gun position to camera space
-        Vector3 fakeGunPosInCameraSpace = VREmulator.cameraPlayer.transform.TransformVector(fakePos);
 
-// Set tracked object position relative to camera with offsets
-        VaroniaInput.Instance.Tracking.position = 
-            VREmulator.cameraPlayer.transform.position + 
-            (VREmulator.cameraPlayer.transform.forward * 0.5f) + 
-            fakeGunPosInCameraSpace - 
-            pivotWorldOffset;
+
 
 // Get camera rotation for reference
         Quaternion cameraRotation = VREmulator.cameraPlayer.transform.rotation;
@@ -57,7 +58,20 @@ public class VrInput : VrItem
         VaroniaInput.Instance.Tracking.rotation = cameraRotation * desiredRotation * pivotCompensation;
 
 
+        
+        
+        // Calculate pivot offset in world space
+        Vector3 pivotWorldOffset = VaroniaInput.Instance.Tracking.TransformVector(VaroniaInput.Instance.Pivot.localPosition);
+// Transform fake gun position to camera space
+        Vector3 fakeGunPosInCameraSpace = VREmulator.cameraPlayer.transform.TransformVector(fakePos);
 
+        
+// Set tracked object position relative to camera with offsets
+        VaroniaInput.Instance.Tracking.position = 
+            VREmulator.cameraPlayer.transform.position + 
+            (VREmulator.cameraPlayer.transform.forward * 0.5f) + 
+            fakeGunPosInCameraSpace - 
+            pivotWorldOffset;
 
 
 

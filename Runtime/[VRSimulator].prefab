@@ -3824,6 +3824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fakePos: {x: 0, y: 0, z: 0}
   fakeRot: {x: 0, y: 0, z: 0}
+  rotationSmoothing: 0.01
 --- !u!114 &3536777814736140704
 MonoBehaviour:
   m_ObjectHideFlags: 0
