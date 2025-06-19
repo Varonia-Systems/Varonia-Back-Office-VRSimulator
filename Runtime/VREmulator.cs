@@ -57,10 +57,13 @@ public class VREmulator : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         StartCoroutine(CheckMainCamera());
         
+#if HAS_XR_MANAGEMENT
         _vrSwitcher = FindFirstObjectByType<VRSwitcher>();
+        _vrSwitcher.onVRSwitch.AddListener(SwitchUI);
+        #endif
         _mouseLook = GetComponent<MouseLookHybrid>();
         _fpsController = GetComponent<VRFPSController>();
-        _vrSwitcher.onVRSwitch.AddListener(SwitchUI);
+      
         uI.SetActive(false);
 
         slider.value = 1.8f;
@@ -255,11 +258,13 @@ if (KeyboardHook.GetKeyDown(KeyCode.Escape) && uI.activeSelf && Application.isFo
     void SwitchUI()
     {
       
-        
+#if HAS_XR_MANAGEMENT
         if(_vrSwitcher.vrEnabled)
         uI.SetActive(false);
         else uI.SetActive(!uI.activeSelf);
-
+        #else
+        uI.SetActive(!uI.activeSelf);
+#endif
 
         ActiveKeyboardMouse(uI.activeSelf);
         if (uI.activeSelf)
