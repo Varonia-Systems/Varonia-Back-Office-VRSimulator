@@ -19,6 +19,9 @@ public enum ItemControl { None,LeftHand, RightHand, Trk }
 public class VREmulator : MonoBehaviour
 {
 
+    public static bool IsActive;
+    
+
     [HideInInspector]
     public Camera cameraPlayer;
 
@@ -263,10 +266,11 @@ if (KeyboardHook.GetKeyDown(KeyCode.Escape) && uI.activeSelf && Application.isFo
         {
             SetHeight(1.8f);
             Application.targetFrameRate = 90;
-
+            IsActive = true;
         }
         else
         {
+            IsActive = false;;
             Application.targetFrameRate = -1;
 
         }
