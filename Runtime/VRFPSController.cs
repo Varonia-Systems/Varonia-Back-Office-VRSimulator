@@ -43,6 +43,10 @@ public class VRFPSController : MonoBehaviour
 
 void Size()
 {
+    
+    if (!_vrEmulator || !_vrEmulator.cameraPlayer) return;
+
+    
     float baseHeight = _vrEmulator.slider.value;
     HeightAction action = HeightAction.Normal;
     

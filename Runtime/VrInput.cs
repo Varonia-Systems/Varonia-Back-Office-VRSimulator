@@ -46,7 +46,7 @@ public class VrInput : VrItem
             
             
 
-            if (Application.isFocused)
+            if (Application.isFocused && VREmulator.IsActive)
             {
 
 // Update mouse input system
