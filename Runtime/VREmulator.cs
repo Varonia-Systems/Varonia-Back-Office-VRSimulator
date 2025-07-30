@@ -259,7 +259,7 @@ if (KeyboardHook.GetKeyDown(KeyCode.Escape) && uI.activeSelf && Application.isFo
     {
       
 #if HAS_XR_MANAGEMENT
-        if(_vrSwitcher.vrEnabled)
+        if(VRSwitcher.vrEnabled)
         uI.SetActive(false);
         else uI.SetActive(!uI.activeSelf);
         #else
